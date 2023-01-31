@@ -3,12 +3,10 @@ package com.amjadprojects.course.trainingcourse.Controllers;
 
 import com.amjadprojects.course.trainingcourse.Services.EmpsRep;
 import com.amjadprojects.course.trainingcourse.models.Employee;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/emps")
@@ -70,6 +68,20 @@ public class ApiController {
        updatedEmp.setSalary(employee.getSalary());
 
         return empsRep.save(updatedEmp);
+
+    }
+
+
+    @GetMapping("/getbyid")
+    public Employee GetEmpById(@RequestHeader Long id){
+
+        System.out.println(id);
+
+        Employee emp = empsRep.getReferenceById(id);
+
+        System.out.println(emp.getBirthdate());
+
+        return  emp;
 
     }
 
