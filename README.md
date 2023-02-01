@@ -13,3 +13,10 @@
 
 
 for any information reach me at : AmjadKhaliliah1998@gmail.com
+
+  
+  
+## 🛠 Skills
+ 1) Java MVC Design Pattern 
+ 2) Intillji ultimate edtion 
+ 3) MySQL Server
