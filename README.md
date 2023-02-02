@@ -20,3 +20,7 @@ for any information reach me at : AmjadKhaliliah1998@gmail.com
  1) Java MVC Design Pattern 
  2) Intillji ultimate edtion 
  3) MySQL Server
+
+## Mock data :
+
+you can find Mock Data as json in you mydata ().json
