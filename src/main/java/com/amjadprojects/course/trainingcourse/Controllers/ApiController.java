@@ -44,9 +44,16 @@ public class ApiController {
     @PostMapping("/saveall")
     public List<Employee> SaveallEmp(@RequestBody List<Employee> employees) {
 
+        System.out.println("******************************************");
+
+        System.out.println(employees.get(1).getSalary());
+
+        System.out.println("******************************************");
+
+
         try {
 
-            return empsRep.saveAll(employees);
+           return empsRep.saveAll(employees);
 
         } catch (Exception e) {
 
@@ -64,7 +71,7 @@ public class ApiController {
        Employee updatedEmp = empsRep.getReferenceById(id);
 
        updatedEmp.setFullName(employee.getFullName());
-       updatedEmp.setBirthdate(employee.getBirthdate());
+       updatedEmp.setPassword(employee.getPassword());
        updatedEmp.setSalary(employee.getSalary());
 
         return empsRep.save(updatedEmp);
@@ -79,7 +86,7 @@ public class ApiController {
 
         Employee emp = empsRep.getReferenceById(id);
 
-        System.out.println(emp.getBirthdate());
+        System.out.println(emp.getSalary());
 
         return  emp;
 

@@ -17,19 +17,23 @@ import java.util.Date;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employee implements Serializable {
+public class Employee  {
 
     @Id
     private Long id;
 
-    @Column(name = "fullname")
+    @Column(name = "fullName")
     private String fullName;
 
-    @Column(name = "salary")
-    private String salary;
 
-    @Column(name = "bD")
-    private String birthdate;
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "salary")
+    private long Salary;
+
+    @Column(name = "password")
+    private String password;
 
     public void setId(Long id) {
         this.id = id;
@@ -38,4 +42,6 @@ public class Employee implements Serializable {
     public Long getId() {
         return id;
     }
+
+
 }
