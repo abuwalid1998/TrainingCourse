@@ -1,8 +1,10 @@
 package com.amjadprojects.course.trainingcourse.Controllers;
 
 
+import com.amjadprojects.course.trainingcourse.Services.EmployeesServices;
 import com.amjadprojects.course.trainingcourse.Services.EmpsRep;
 import com.amjadprojects.course.trainingcourse.models.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -15,9 +17,12 @@ public class ApiController {
     final
     EmpsRep empsRep;
 
+final
+EmployeesServices employeesServices;
 
-    public ApiController(EmpsRep empsRep) {
+    public ApiController(EmpsRep empsRep, EmployeesServices employeesServices) {
         this.empsRep = empsRep;
+        this.employeesServices = employeesServices;
     }
 
     @GetMapping("/findall")
@@ -91,6 +96,28 @@ public class ApiController {
         return  emp;
 
     }
+
+
+    @GetMapping("/updatesal/{id}")
+    public  Employee updatesalary(@PathVariable long id){
+
+
+        Employee updatedEmp = empsRep.getReferenceById(id);
+
+        Long salary = updatedEmp.getSalary();
+
+        System.out.println("Old Salary:- "+salary);
+
+        salary = employeesServices.updatesalary(salary);
+
+        updatedEmp.setSalary( salary);
+
+        System.out.println("New Salary :- "+salary);
+
+        return empsRep.save(updatedEmp);
+
+    }
+
 
 
 }
