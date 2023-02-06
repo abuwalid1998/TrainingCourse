@@ -4,7 +4,9 @@ package com.amjadprojects.course.trainingcourse.Controllers;
 import com.amjadprojects.course.trainingcourse.Services.EmployeesServices;
 import com.amjadprojects.course.trainingcourse.Services.EmpsRep;
 import com.amjadprojects.course.trainingcourse.models.Employee;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.lowagie.text.Document;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -108,13 +110,64 @@ EmployeesServices employeesServices;
 
         System.out.println("Old Salary:- "+salary);
 
-        salary = employeesServices.updatesalary(salary);
+        salary = employeesServices.updateSalary(salary);
 
         updatedEmp.setSalary( salary);
 
         System.out.println("New Salary :- "+salary);
 
         return empsRep.save(updatedEmp);
+    }
+
+
+    @GetMapping("/getempdoc/{id}")
+    public Document getDoc(@PathVariable long id,HttpServletResponse response){
+
+
+        Employee employee;
+
+        try {
+
+             employee = empsRep.getReferenceById(id);
+
+        }catch (EntityNotFoundException e){
+
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            return null;
+        }
+
+
+
+
+        System.out.println(employee.getFullName()+"************************");
+
+       try {
+
+           String headerkey = "Content-Disposition";
+           String headervalue = "attachment; filename=EmployeeDetails" + employeesServices.gettime() + ".pdf";
+
+           response.setStatus(HttpServletResponse.SC_OK);
+
+           response.setContentType("application/pdf");
+           response.setHeader(headerkey, headervalue);
+
+
+           System.out.println(employee.getFullName()+"************************");
+
+
+           return   employeesServices.generate(employee,response);
+
+       }catch (Exception e){
+
+
+           response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+
+           return null;
+
+       }
+
+
+
 
     }
 
