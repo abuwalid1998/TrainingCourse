@@ -1,9 +1,7 @@
 package com.amjadprojects.course.trainingcourse.models;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +15,7 @@ import java.util.Date;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Employee  {
+public class Employee implements Serializable {
 
     @Id
     private Long id;
@@ -35,9 +33,17 @@ public class Employee  {
     @Column(name = "password")
     private String password;
 
-
     @Column
     private  Long vacationBalance;
+
+    @Column
+    private  Double leavingHours;
+
+
+
+    @JoinColumn(name = "maneger_id")
+    @ManyToOne
+    private Manegers maneger;
 
     public void setId(Long id) {
         this.id = id;

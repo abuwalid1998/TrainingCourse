@@ -98,7 +98,6 @@ public class EmployeesServices
     }
 
 
-
     public boolean takevaction(Long empid,Long numofdays){
 
         Employee emp = empsRep.getReferenceById(empid);
@@ -127,6 +126,17 @@ public class EmployeesServices
         return false;
     }
 
+
+    public  Double inseartLeaveingHours(Long empid , Double hours){
+
+        Employee emp = empsRep.getReferenceById(empid);
+
+        emp.setLeavingHours(hours);
+
+        empsRep.save(emp);
+
+        return emp.getLeavingHours();
+    }
 
 
 

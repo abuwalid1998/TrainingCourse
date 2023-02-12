@@ -3,14 +3,19 @@ package com.amjadprojects.course.trainingcourse.Controllers;
 
 import com.amjadprojects.course.trainingcourse.Services.EmployeesServices;
 import com.amjadprojects.course.trainingcourse.Services.EmpsRep;
+import com.amjadprojects.course.trainingcourse.Services.ManegersReposity;
+import com.amjadprojects.course.trainingcourse.Services.ManegersService;
 import com.amjadprojects.course.trainingcourse.models.Employee;
+import com.amjadprojects.course.trainingcourse.models.Manegers;
 import com.lowagie.text.Document;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/emps")
@@ -19,12 +24,17 @@ public class ApiController {
     final
     EmpsRep empsRep;
 
+
+    final
+    ManegersService manegersReposity;
+
 final
 EmployeesServices employeesServices;
 
-    public ApiController(EmpsRep empsRep, EmployeesServices employeesServices) {
+    public ApiController(EmpsRep empsRep, EmployeesServices employeesServices, ManegersService manegersReposity) {
         this.empsRep = empsRep;
         this.employeesServices = employeesServices;
+        this.manegersReposity = manegersReposity;
     }
 
     @GetMapping("/findall")
@@ -176,7 +186,28 @@ EmployeesServices employeesServices;
     @GetMapping("/takevac/{empid}/{numofdays}")
     public boolean takeVacation(@PathVariable Long empid,@PathVariable Long numofdays){
 
+
         return employeesServices.takevaction(empid,numofdays);
+
+
+    }
+
+
+    @GetMapping("/leaveHoues/{empid}/{numofhours}")
+    public Double leavingHours(@PathVariable Long empid,@PathVariable Double numofhours){
+
+        return  employeesServices.inseartLeaveingHours(empid,numofhours);
+
+    }
+
+
+    @PostMapping("/addempstomaneger/{man_id}")
+    public Manegers inseartEmps(@PathVariable Long man_id, @RequestBody Set<Employee> employees){
+
+
+        return manegersReposity.inseartEmps(man_id,employees);
+
+
 
     }
 
