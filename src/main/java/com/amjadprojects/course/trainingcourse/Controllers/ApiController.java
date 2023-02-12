@@ -101,7 +101,7 @@ EmployeesServices employeesServices;
 
 
     @GetMapping("/updatesal/{id}")
-    public  Employee updatesalary(@PathVariable long id){
+    public  Employee updateSal(@PathVariable long id){
 
 
         Employee updatedEmp = empsRep.getReferenceById(id);
