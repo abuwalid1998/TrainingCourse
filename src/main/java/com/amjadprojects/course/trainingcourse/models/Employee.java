@@ -35,6 +35,10 @@ public class Employee  {
     @Column(name = "password")
     private String password;
 
+
+    @Column
+    private  Long vacationBalance;
+
     public void setId(Long id) {
         this.id = id;
     }

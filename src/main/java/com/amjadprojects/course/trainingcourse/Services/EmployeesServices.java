@@ -99,6 +99,36 @@ public class EmployeesServices
 
 
 
+    public boolean takevaction(Long empid,Long numofdays){
+
+        Employee emp = empsRep.getReferenceById(empid);
+
+
+        Long vacdays = emp.getVacationBalance();
+
+
+        System.out.println("Vac Days : - " + vacdays);
+
+
+        if (vacdays >= numofdays && vacdays > 0 && numofdays > 0){
+
+            vacdays = vacdays - numofdays;
+
+            System.out.println(" new Vac Days : - " + vacdays);
+
+            emp.setVacationBalance(vacdays);
+
+            empsRep.save(emp);
+
+            return true;
+        }
+
+
+        return false;
+    }
+
+
+
 
 
 

@@ -173,4 +173,11 @@ EmployeesServices employeesServices;
 
 
 
+    @GetMapping("/takevac/{empid}/{numofdays}")
+    public boolean takeVacation(@PathVariable Long empid,@PathVariable Long numofdays){
+
+        return employeesServices.takevaction(empid,numofdays);
+
+    }
+
 }
