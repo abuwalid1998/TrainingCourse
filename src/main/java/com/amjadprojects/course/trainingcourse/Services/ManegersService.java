@@ -3,11 +3,8 @@ package com.amjadprojects.course.trainingcourse.Services;
 
 import com.amjadprojects.course.trainingcourse.models.Employee;
 import com.amjadprojects.course.trainingcourse.models.Manegers;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -42,5 +39,11 @@ public class ManegersService {
 
       return   manegersReposity.save(maneger);
 
+    }
+
+
+
+    public Manegers getManegers(Long id){
+        return manegersReposity.getReferenceById(id);
     }
 }

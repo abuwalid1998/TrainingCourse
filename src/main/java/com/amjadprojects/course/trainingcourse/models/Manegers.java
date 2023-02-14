@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
@@ -16,7 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Manegers {
+public class Manegers implements Serializable {
 
 
     @Id
@@ -27,6 +27,7 @@ public class Manegers {
     private String depName;
 
 
+    @Column(length = 100000)
     @OneToMany(mappedBy = "maneger")
     private Set<Employee> employees;
 

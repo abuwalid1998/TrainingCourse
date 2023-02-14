@@ -3,14 +3,12 @@ package com.amjadprojects.course.trainingcourse.Controllers;
 
 import com.amjadprojects.course.trainingcourse.Services.EmployeesServices;
 import com.amjadprojects.course.trainingcourse.Services.EmpsRep;
-import com.amjadprojects.course.trainingcourse.Services.ManegersReposity;
 import com.amjadprojects.course.trainingcourse.Services.ManegersService;
 import com.amjadprojects.course.trainingcourse.models.Employee;
 import com.amjadprojects.course.trainingcourse.models.Manegers;
 import com.lowagie.text.Document;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -208,6 +206,23 @@ EmployeesServices employeesServices;
         return manegersReposity.inseartEmps(man_id,employees);
 
 
+
+    }
+
+
+    @GetMapping("/getManegerDetalis/{id}")
+    public Manegers manegers(@PathVariable Long id){
+        try {
+
+            return manegersReposity.getManegers(id);
+
+        }catch (Exception e){
+
+            System.out.println(e.getMessage());
+
+            return new Manegers();
+
+        }
 
     }
 
