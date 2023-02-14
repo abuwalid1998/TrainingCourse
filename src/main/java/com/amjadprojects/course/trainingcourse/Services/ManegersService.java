@@ -3,9 +3,11 @@ package com.amjadprojects.course.trainingcourse.Services;
 
 import com.amjadprojects.course.trainingcourse.models.Employee;
 import com.amjadprojects.course.trainingcourse.models.Manegers;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ManegersService {
@@ -14,36 +16,34 @@ public class ManegersService {
     ManegersReposity manegersReposity;
 
 
-    public ManegersService(ManegersReposity manegersReposity) {
+    final
+    EmpsRep empsRep;
+
+
+    public ManegersService(ManegersReposity manegersReposity, EmpsRep empsRep) {
         this.manegersReposity = manegersReposity;
+        this.empsRep = empsRep;
     }
 
 
-    public Manegers inseartEmps(Long id , Set<Employee> employees){
+    public boolean addEmployeeToDepartmnet(Long man_id,Employee employee){
 
-
-        Manegers maneger  = manegersReposity.getReferenceById(id);
-
-
-        System.out.println("************************");
-        System.out.println(maneger.toString());
-        System.out.println("************************");
-
-
-        maneger.setEmployees(employees);
-
-
-        System.out.println("************************");
-        System.out.println(maneger.toString());
-        System.out.println("************************");
-
-      return   manegersReposity.save(maneger);
-
+        Optional<Manegers>optionalManegers = manegersReposity.findById(man_id);
+        if (optionalManegers.isPresent()){
+            Manegers maneger = optionalManegers.get();
+            employee.setManeger(maneger);
+            empsRep.save(employee);
+            return true;
+        }
+        return false;
     }
 
 
+    public List<Employee> getManegers(Long id){
 
-    public Manegers getManegers(Long id){
-        return manegersReposity.getReferenceById(id);
+        Manegers manegers = manegersReposity.getReferenceById(id);
+
+        return empsRep.findBymaneger(manegers);
+
     }
 }

@@ -40,8 +40,7 @@ public class Employee implements Serializable {
     private  Double leavingHours;
 
 
-
-    @JoinColumn(name = "maneger_id")
+    @JoinColumn(name = "maneger_id",nullable = false)
     @ManyToOne
     private Manegers maneger;
 

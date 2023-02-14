@@ -18,19 +18,11 @@ import java.util.Set;
 @ToString
 public class Manegers implements Serializable {
 
-
     @Id
     private Long id;
 
-
     @Column
     private String depName;
-
-
-    @Column(length = 100000)
-    @OneToMany(mappedBy = "maneger")
-    private Set<Employee> employees;
-
 
     public void setId(Long id) {
         this.id = id;

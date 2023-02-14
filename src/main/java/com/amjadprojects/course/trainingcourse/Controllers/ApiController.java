@@ -5,7 +5,6 @@ import com.amjadprojects.course.trainingcourse.Services.EmployeesServices;
 import com.amjadprojects.course.trainingcourse.Services.EmpsRep;
 import com.amjadprojects.course.trainingcourse.Services.ManegersService;
 import com.amjadprojects.course.trainingcourse.models.Employee;
-import com.amjadprojects.course.trainingcourse.models.Manegers;
 import com.lowagie.text.Document;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletResponse;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/emps")
@@ -34,6 +32,8 @@ EmployeesServices employeesServices;
         this.employeesServices = employeesServices;
         this.manegersReposity = manegersReposity;
     }
+
+
 
     @GetMapping("/findall")
     public ArrayList<Employee> getall() {
@@ -199,31 +199,6 @@ EmployeesServices employeesServices;
     }
 
 
-    @PostMapping("/addempstomaneger/{man_id}")
-    public Manegers inseartEmps(@PathVariable Long man_id, @RequestBody Set<Employee> employees){
-
-
-        return manegersReposity.inseartEmps(man_id,employees);
-
-
 
     }
 
-
-    @GetMapping("/getManegerDetalis/{id}")
-    public Manegers manegers(@PathVariable Long id){
-        try {
-
-            return manegersReposity.getManegers(id);
-
-        }catch (Exception e){
-
-            System.out.println(e.getMessage());
-
-            return new Manegers();
-
-        }
-
-    }
-
-}
