@@ -9,4 +9,6 @@ import java.util.List;
 public interface EmpsRep extends JpaRepository<Employee,Long> {
 
     List<Employee> findBymaneger(Manegers id);
+
+
 }
