@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Setter
@@ -43,6 +44,16 @@ public class Employee implements Serializable {
     @JoinColumn(name = "maneger_id",nullable = false)
     @ManyToOne
     private Manegers maneger;
+
+
+
+    @ManyToMany()
+    @JoinTable(
+           name = "emps_adresses",
+           joinColumns = @JoinColumn(name = "emp_id"),
+           inverseJoinColumns = @JoinColumn(name = "address_id")
+     )
+    private List<Address> addresses;
 
     public void setId(Long id) {
         this.id = id;

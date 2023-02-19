@@ -1,6 +1,7 @@
 package com.amjadprojects.course.trainingcourse.Services;
 
 
+import com.amjadprojects.course.trainingcourse.models.Address;
 import com.amjadprojects.course.trainingcourse.models.Employee;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.CMYKColor;
@@ -8,12 +9,14 @@ import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class EmployeesServices
@@ -22,9 +25,14 @@ public class EmployeesServices
    final
    EmpsRep empsRep;
 
+   final
+   AdressRep adressRep;
 
-    public EmployeesServices(EmpsRep empsRep) {
+
+
+    public EmployeesServices(EmpsRep empsRep, AdressRep adressRep) {
         this.empsRep = empsRep;
+        this.adressRep = adressRep;
     }
 
     public Long updateSalary(Long salary){
@@ -137,6 +145,12 @@ public class EmployeesServices
 
         return emp.getLeavingHours();
     }
+
+
+  public List<Employee> getbyaddress(Long id){
+      Address address = adressRep.getReferenceById(id);
+      return empsRep.findAllByAddresses(address);
+  }
 
 
 

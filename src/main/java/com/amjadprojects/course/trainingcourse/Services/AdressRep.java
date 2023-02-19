@@ -2,17 +2,14 @@ package com.amjadprojects.course.trainingcourse.Services;
 
 import com.amjadprojects.course.trainingcourse.models.Address;
 import com.amjadprojects.course.trainingcourse.models.Employee;
-import com.amjadprojects.course.trainingcourse.models.Manegers;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface EmpsRep extends JpaRepository<Employee,Long> {
 
-    List<Employee> findBymaneger(Manegers id);
-
-
-    List<Employee> findAllByAddresses(Address address);
+@Repository
+public interface AdressRep extends JpaRepository<Address,Long> {
 
 
 }

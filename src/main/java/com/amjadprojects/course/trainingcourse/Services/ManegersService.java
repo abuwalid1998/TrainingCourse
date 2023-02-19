@@ -39,11 +39,13 @@ public class ManegersService {
     }
 
 
-    public List<Employee> getManegers(Long id){
+    public List<Employee> getManegers(Long id)
+    {
+
 
         Manegers manegers = manegersReposity.getReferenceById(id);
-
         return empsRep.findBymaneger(manegers);
+
 
     }
 }
