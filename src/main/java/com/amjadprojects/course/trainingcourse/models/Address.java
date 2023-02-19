@@ -1,10 +1,7 @@
 package com.amjadprojects.course.trainingcourse.models;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +16,9 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Address {
+
+
+
     private Long id;
 
 
@@ -41,6 +41,7 @@ public class Address {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }

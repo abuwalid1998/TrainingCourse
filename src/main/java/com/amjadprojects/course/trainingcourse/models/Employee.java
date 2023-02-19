@@ -53,7 +53,7 @@ public class Employee implements Serializable {
            joinColumns = @JoinColumn(name = "emp_id"),
            inverseJoinColumns = @JoinColumn(name = "address_id")
      )
-    private List<Address> addresses;
+    public List<Address> addresses;
 
     public void setId(Long id) {
         this.id = id;

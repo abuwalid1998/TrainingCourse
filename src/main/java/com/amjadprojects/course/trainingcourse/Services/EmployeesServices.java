@@ -154,6 +154,35 @@ public class EmployeesServices
 
 
 
+  public Boolean addAddresstoEmp(Long id,Address address){
+
+
+        try {
+
+            Employee employee = empsRep.getReferenceById(id);
+
+            adressRep.save(address);
+
+            employee.addresses.add(address);
+
+            empsRep.save(employee);
+
+            return true;
+
+        }catch (Exception e){
+
+            System.out.println(e.getMessage());
+
+            return false;
+        }
+
+
+
+  }
+
+
+
+
 
 
 }
